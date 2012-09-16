@@ -21,12 +21,7 @@
 
 #include "error.h"
 #include "net.h"
-/*
-#include "http.h"
-#include "crypto.h"
-#include "irc.h"
 #include "global.h"
-*/
 
 
 short createTcpSocket( const char *host, const char *port, int recv_timeout )

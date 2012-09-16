@@ -23,12 +23,6 @@
 #include "global.h"
 #include "http.h"
 
-/*
-#include "irc.h"
-#include "http.h"
-#include "crypto.h"
-*/
-
 
 HTTP_REQUEST *httpRequest( const char *host, const char *port, const char *method, const char *request, double max_len )
 {

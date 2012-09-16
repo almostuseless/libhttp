@@ -101,25 +101,18 @@ void destroySocket( unsigned short sockfd )
 	#endif
 }
 
+
+/* 
+ * Todo: make this work..
+ *
+*/
+
 int socksInit( const char *host, const char *port, const char *phost, const char *pport )
 {
 	int sockfd = createTcpSocket( phost, pport, 0 );
 
 	char ssend[20] = { 0 };
 	char srecv[20] = { 0 };
-	int ret;
-
-	ssend[0]	= '\x05';	// SOCKS Version
-	ssend[1]	= '\x01';	// # Auth methods
-	ssend[2]	= '\x00';	// No auth
-
-	if( ( ret = recv( sockfd, srecv, sizeof( srecv ), 0 ) ) == 2 )
-	{
-		if( strncmp( srecv, "\x05\x00", 2 ) == 0 )
-			printf("[+] connection ok\n");
-	}
-
-
 
 	ssend[0]	= 0x05;	// SOCKS Version
 	ssend[1]	= 0x01;	// Command (new stream)
@@ -140,7 +133,7 @@ int socksInit( const char *host, const char *port, const char *phost, const char
 	ssend[9]	= thost & 0xFF;
 
 
-	printf("sent: %d\n", (unsigned int)send( sockfd, ssend, 10,  0 ) );
+	send( sockfd, ssend, 10,  0 ) );
 
 	printf("Got %d bytes\n", (unsigned int)recv( sockfd, srecv, sizeof( srecv ), 0 ) );
 

@@ -3,15 +3,14 @@ CFLAGS  = -Wall -Wstrict-prototypes
 SOURCES = net.c http.c
 INCLUDE = crypto.h error.h ftp.h global.h http.h net.h
 OBJECTS = $(SOURCES:.c=.o)
-BIN     = libhttp.a
+BIN     = libhttp.so
 
 all:
 	for i in $(SOURCES); do \
-		$(CC) -c $$i $(CFLAGS) -o obj/$$i.o; \
+		$(CC) $(CFLAGS) -c -fPIC $$i -o obj/$$i.o; \
 	done
 
-	ar rcs $(BIN) obj/*.o
-
+	gcc -shared -Wl,-soname,libhttp.so.1 -o $(BIN) obj/*.o
 	
 clean:
 	rm -rf obj/*

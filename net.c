@@ -133,7 +133,7 @@ int socksInit( const char *host, const char *port, const char *phost, const char
 	ssend[9]	= thost & 0xFF;
 
 
-	send( sockfd, ssend, 10,  0 ) );
+	send( sockfd, ssend, 10,  0 );
 
 	printf("Got %d bytes\n", (unsigned int)recv( sockfd, srecv, sizeof( srecv ), 0 ) );
 
